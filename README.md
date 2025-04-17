@@ -10,7 +10,6 @@ Fishing Tracker is a comprehensive full-stack web application designed to help a
 - [ ] Configure database (PostgreSQL)
 - [ ] Implement user registration
 
-
 ### Running for development
 
 #### Backend
@@ -21,3 +20,5 @@ python manage.py runserver
 - go into front end npm start 
 
 NOW WE COOKING 🍳
+
+USE SEARCH FOR NOTE: on how to get basic things done or adding implementations

@@ -11,7 +11,15 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
+#loading dotenv
+load_dotenv()
+
+# DB env variables loading
+dbPass = os.getenv("DATABASE_PASSWORD")
+dbUser = os.getenv("DATABASE_USERNAME")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'DBconnection',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'FFbackend.urls'
@@ -74,9 +85,15 @@ WSGI_APPLICATION = 'FFbackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': f'{dbUser}',
+        'PASSWORD': f'{dbPass}',
+        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+        'PORT': '6543'
     }
+    
+    
 }
 
 
@@ -96,6 +113,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+# TODO: setup CORS from the React Domain
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
 ]
 
 
