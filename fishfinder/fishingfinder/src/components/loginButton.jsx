@@ -1,13 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 export const Login = () => {
 
-    function signInWithGoogle () {
-      console.log("Working")
-    }
+    
 
     return(
-        <button onClick={signInWithGoogle}> Login with Google </button>
+      <Link to='/login'> Login </Link>
     )
 }

@@ -22,3 +22,8 @@ python manage.py runserver
 NOW WE COOKING 🍳
 
 USE SEARCH FOR NOTE: on how to get basic things done or adding implementations
+
+# How to move around in React
+
+Linkto for links
+NavigateTo via Code or rediirect
