@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { ToRegisterPage } from "../components/registerbutton.jsx";
 
 
 function LoginPage() {
@@ -12,8 +13,10 @@ function LoginPage() {
     }
 
     function submitLogin() {
-        
+        console.log("Submission of Login not built yet")
     }
+
+
 
     return (
         <section className="Login">
@@ -25,6 +28,7 @@ function LoginPage() {
                 <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Password"/>
                 <button type="button" onClick={submitLogin}> Login </button>
             </form>
+            <ToRegisterPage />
         </section>
     )
 }

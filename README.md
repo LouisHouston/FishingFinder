@@ -26,4 +26,11 @@ USE SEARCH FOR NOTE: on how to get basic things done or adding implementations
 # How to move around in React
 
 Linkto for links
-NavigateTo via Code or rediirect
+NavigateTo via Code or redirect
+
+# To make the tables in the DB off the models in django 
+
+python manage.py makemigrations
+python manage.py migrate
+
+you have to do this when you make a DB and it will make it into the DB automatically 
