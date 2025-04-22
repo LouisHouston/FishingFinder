@@ -4,11 +4,11 @@ Fishing Tracker is a comprehensive full-stack web application designed to help a
 
 ## Phase 1: Project Setup & Authentication
 
-- [x] Create Django project structure
-- [x] Set up virtual environment
-- [x] Install required dependencies
+✅Create Django project structure
+✅ Set up virtual environment
+✅ Install required dependencies
 - [ ] Configure database (PostgreSQL)
-- [ ] Implement user registration
+✅ Implement user registration
 
 ### Running for development
 
@@ -33,4 +33,13 @@ NavigateTo via Code or redirect
 python manage.py makemigrations
 python manage.py migrate
 
-you have to do this when you make a DB and it will make it into the DB automatically 
+you have to do this when you make a DB and it will make it into the DB automatically
+
+REVIEW: 
+✅ fix password check
+✅ honey pot
+✅encryption for user password
+- getting google map
+- make a dark mode and learn how to do it well
+
+dont need to make custom hashing because django handles that 

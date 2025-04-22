@@ -13,22 +13,44 @@ function LoginPage() {
     }
 
     function submitLogin() {
-        console.log("Submission of Login not built yet")
+        fetch("http://127.0.0.1:8000/api/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+        })
+        .then((response) => {
+            if(!response.ok){
+                throw new Error(`LOGIN ERROR: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('username', data.username);
+
+            window.location.href = '/'
+        })
+        .catch((error) =>{
+            console.error("Login error: ", error);
+        })
     }
-
-
 
     return (
         <section className="Login">
             <form>
-                <label> Login: </label>
+                <label> Login: </label> <br/>
                 <input onChange={(e) => setUserName(e.target.value)} type="text" placeholder="Username"/>
-                <br></br>
+                <br/>
                 <label> Password: </label>
+                <br/>
                 <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder="Password"/>
                 <button type="button" onClick={submitLogin}> Login </button>
             </form>
-            <ToRegisterPage />
         </section>
     )
 }

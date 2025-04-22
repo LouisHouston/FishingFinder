@@ -7,7 +7,6 @@ from . import views
 # 1st: is the domain/(goes here) , 2nd: the correct views file, 3rd:
 urlpatterns = [
     path('test-db/', views.testing_db, name='test_record'),
-    
+    path('login/', views.login_user, name='login_user'),
     path('registerUser/', views.registerUser, name='registerUser')
-
 ]

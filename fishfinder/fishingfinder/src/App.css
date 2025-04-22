@@ -49,22 +49,50 @@ h1{
 }
 
 
-.navbar-logo{
-  color: aqua;
-  text-decoration: none;
-  font-size: 32px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #282c34;
+  margin-bottom: 5%;
 }
 
-nav{
-  border-bottom:2px solid blue;
+.navbar-logo {
+  color: #23849e;
+  text-decoration: none;
+  font-size: 2em;
+  font-weight: 600;
 }
 
-.navbar-items{
-  text-align: right;
-  justify-content: right;
+.navbar-logo:hover {
+  color: white;
+}
+
+.navbar-link-container {
+  display: flex;
+  gap: .5em;
+  align-items: center;
+}
+
+.navbar-item {
+  color: aliceblue;
   text-decoration: none;
-  float: right;
-  padding: .5%;
+  font-size: 0.8em;
+  padding: 0.5rem;
+  border-style: solid;
+  border-color: #23849e;
+  border-width: 1.5px;
+  border-radius: .5em;
+}
+
+.navbar-item:hover{
+  color: #282c34 !important;
+  background-color: #23849e;
+}
+
+.navbar-item:hover {
+  color: white;
 }
 
 
@@ -74,4 +102,8 @@ nav{
 
 #links {
   text-decoration: none;
+}
+
+body {
+  background-color: #282c34;
 }

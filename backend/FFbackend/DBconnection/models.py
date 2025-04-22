@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class ExampleTable(models.Model):
     column1 = models.IntegerField()
