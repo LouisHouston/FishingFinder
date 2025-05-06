@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models import ExampleTable, Users
+from .models.models import ExampleTable, Users
 from .serializers import ExampleTableSerializer, UsersSerializer
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -58,3 +58,8 @@ def login_user(request):
         })
     else:
         return Response({"error": "Invalid credentials"}, status=400)
+    
+@api_view(['POST'])
+def logout_user(request):
+    request.user.auth_token.delete() 
+    return Response({"message": "Logged out successfully"})

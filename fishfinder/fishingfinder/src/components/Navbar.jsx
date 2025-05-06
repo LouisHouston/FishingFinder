@@ -12,6 +12,21 @@ function Navbar() {
     }
   })
 
+  function logout() {
+    const token = localStorage.getItem('authtoken');
+    
+    fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('username')
+    window.location.href = '/'
+  }
+
+
   return (
     <header>
       <nav className="navbar">
@@ -26,9 +41,9 @@ function Navbar() {
             <Link to="./login" className="navbar-item">
             Login
           </Link>) }
-          <Link to="./register" className="navbar-item">
+          { userName ? (<button onClick={logout} className="navbar-item"> Sign Out </button>) :  ( <Link to="./register" className="navbar-item">
             Sign Up
-          </Link> 
+          </Link> )}
         </div>
       </nav>
     </header>

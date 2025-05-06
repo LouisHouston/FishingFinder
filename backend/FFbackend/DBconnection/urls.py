@@ -8,5 +8,6 @@ from . import views
 urlpatterns = [
     path('test-db/', views.testing_db, name='test_record'),
     path('login/', views.login_user, name='login_user'),
-    path('registerUser/', views.registerUser, name='registerUser')
+    path('registerUser/', views.registerUser, name='registerUser'),
+    path('logout/', views.logout_user, name='logout_user')
 ]

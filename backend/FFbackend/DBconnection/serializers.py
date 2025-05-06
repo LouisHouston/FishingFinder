@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ExampleTable, Users
+from .models.models import ExampleTable, Users
 
 class ExampleTableSerializer(serializers.ModelSerializer):
     class Meta:

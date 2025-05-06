@@ -6,7 +6,7 @@ import { TestDbButton } from './components/testing';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-
+import { Profile }  from './pages/Profile'
 function App() {
   return (
     <Router>
@@ -15,6 +15,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </Router>
   );

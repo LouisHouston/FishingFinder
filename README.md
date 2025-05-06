@@ -39,7 +39,7 @@ REVIEW:
 ✅ fix password check
 ✅ honey pot
 ✅encryption for user password
-- getting google map
+✅ getting google map
 - make a dark mode and learn how to do it well
 
 dont need to make custom hashing because django handles that 
