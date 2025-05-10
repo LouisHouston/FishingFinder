@@ -47,12 +47,17 @@ const containerStyle = {
     }
   ];
   
+  
   function Home() {
     const username = localStorage.getItem('username');
     const [userLocation, setUserLocation ] = useState({lat:null, lng:null})
+    const [hasPromptedLocation, setHasPromptedLocation] = useState(false);
     // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
+
+    // useEffect will only run this code once when it loads the page
       useEffect( () => {
+        if(!hasPromptedLocation){
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const latitude = position.coords.latitude;
@@ -60,18 +65,27 @@ const containerStyle = {
 
             // setting users location
             setUserLocation({lat:latitude, lng:longitude});
-
+            setHasPromptedLocation(true);
             // NOTE:debug
             console.log("User's location:", latitude, longitude);
         
             },
           (error) => {
             console.error("Error getting location:", error);
+            // need an edge case for if it gets messed up it can retry or stop trying and just allow user 
           }
         );
-      },[]);
+      }
+      },[hasPromptedLocation]);
     
 
+      // if we do have userLocation lets find the nearest BoW
+      // with all revelant tags with fish and bait
+      useEffect( () => {
+        if(userLocation){ 
+          
+        }
+      }, [userLocation]);
 
 
     return (
@@ -89,7 +103,6 @@ const containerStyle = {
             options={{ styles: customMapStyle}}
             zoom={10}
           >
-            
             {/* You can add Markers or other map components here */}
           </GoogleMap>
         </LoadScript>

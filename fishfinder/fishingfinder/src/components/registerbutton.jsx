@@ -10,6 +10,5 @@ export const ToRegisterPage = () => {
         <button className="links"> <Link to='/register'> Register </Link>  </button>
        
     )
-
     
 }
