@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
     width: '100%',
@@ -47,11 +47,17 @@ const containerStyle = {
     }
   ];
   
+  function doSomething(){
+    console.log("Hello")
+  }
   
   function Home() {
     const username = localStorage.getItem('username');
-    const [userLocation, setUserLocation ] = useState({lat:null, lng:null})
+    const [userLocation, setUserLocation ] = useState({lat:null, lng:null});
     const [hasPromptedLocation, setHasPromptedLocation] = useState(false);
+    const [waterBodies, setWaterBodies] = useState([]);
+    const [placingMarker, setPlacingMarker] = useState(false);
+    const [tempMarker, setTempMarker] = useState(null);
     // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
 
@@ -83,7 +89,17 @@ const containerStyle = {
       // with all revelant tags with fish and bait
       useEffect( () => {
         if(userLocation){ 
-          
+            fetch("http://127.0.0.1:8000/api/water-bodies/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Water Bodies: ", data);
+          setWaterBodies(data);
+        })
         }
       }, [userLocation]);
 
@@ -92,8 +108,6 @@ const containerStyle = {
       <>
         <header>
           <h1>🐟Fishing Finder🐟</h1>
-          {username ? (<button type="button" > Allow Location?</button>)
-          : (<label> Must sign in first</label>)}
         </header>
         <section className="mapContainer">
         <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
@@ -101,11 +115,30 @@ const containerStyle = {
             mapContainerStyle={containerStyle}
             center={ userLocation ? userLocation : (center)}
             options={{ styles: customMapStyle}}
-            zoom={10}
+            zoom={12}
+            onClick={(e) => {
+              if (placingMarker){
+                const lat = e.latLng.lat();
+                const lng = e.latLng.lng();
+                setTempMarker({lat, lng});
+                setPlacingMarker(false);
+              }
+            }}
           >
-            {/* You can add Markers or other map components here */}
+            {waterBodies.map((place, i) => (
+    <Marker
+      key={i}
+      position={{ lat: place.lat, lng: place.lng }}
+      title={place.name}
+    />
+  ))}
+  {username ? (<button class="mapButton" onClick={() => {
+    setPlacingMarker(true);
+  }} > Add a fishing spot</button>)
+          : (<label> Must sign in first</label>)}
           </GoogleMap>
         </LoadScript>
+        
         </section>
       </>
     );

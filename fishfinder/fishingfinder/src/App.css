@@ -122,3 +122,25 @@ body {
   width:auto;
   margin: 1em;
 }
+
+.mapButton {
+ color: aliceblue !important;
+  text-decoration: none;
+  font-size: 0.8em;
+  padding: 0.5rem;
+  border-color: #23849e !important;
+  border-width: 1.5px;
+  border-radius: .5em;
+  background-color: inherit; 
+  cursor: pointer; 
+  font-family: inherit;
+  margin-left: 1em;
+  margin-top: 37%;
+  z-index: 1000;
+  position: relative;
+}
+
+.mapButton:hover{
+  color: #282c34 !important;
+  background-color: #23849e;
+}

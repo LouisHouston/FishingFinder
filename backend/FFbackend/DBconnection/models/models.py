@@ -29,10 +29,10 @@ class BodyOfWater(models.Model):
     bow_id = models.AutoField(primary_key=True)
     lng = models.FloatField()
     lat = models.FloatField()
+    name = models.CharField(max_length = 100)
 
     def __str__(self):
-        return f"Water {self.bo_wid}"
-
+        return f"Water {self.bow_id}"
 
 class FishingLog(models.Model):
     catch_id = models.AutoField(primary_key=True)

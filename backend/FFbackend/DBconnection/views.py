@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models.models import ExampleTable, Users
+from .models.models import ExampleTable, Users, BodyOfWater
 from .serializers import ExampleTableSerializer, UsersSerializer
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -63,3 +63,13 @@ def login_user(request):
 def logout_user(request):
     request.user.auth_token.delete() 
     return Response({"message": "Logged out successfully"})
+
+@api_view(['GET'])
+def water_bodies(request):
+    bodies = BodyOfWater.objects.all()
+    data = [{
+        'id': b.bow_id,
+        'lat': b.lat,
+        'lng': b.lng
+    } for b in bodies]
+    return Response(data)
