@@ -70,6 +70,7 @@ def water_bodies(request):
     data = [{
         'id': b.bow_id,
         'lat': b.lat,
-        'lng': b.lng
+        'lng': b.lng,
+        'name': b.name
     } for b in bodies]
     return Response(data)

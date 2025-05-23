@@ -10,7 +10,7 @@ function Navbar() {
     if(storedUserName){
       setUserName(storedUserName);
     }
-  })
+  },[]);
 
   function logout() {
     const token = localStorage.getItem('authtoken');

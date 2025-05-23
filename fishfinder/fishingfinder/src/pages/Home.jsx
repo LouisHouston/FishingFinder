@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { AdvancedMarker } from "@vis.gl/react-google-maps";
+import FishingSite from "../components/FishingSite";
 
 const containerStyle = {
     width: '100%',
@@ -17,9 +19,9 @@ const containerStyle = {
       elementType: "labels",
       stylers: [{ visibility: "off" }]
     },
-    {featureType:"cities",
+    {featureType:"poi",
     elementType:"labels",
-    stylers: [{visibility: "on"}]},
+    stylers: [{visibility: "off"}]},
     {
       featureType: "water",
       elementType: "labels",
@@ -46,10 +48,7 @@ const containerStyle = {
       stylers: [{ color: "#e5e5e5" }]
     }
   ];
-  
-  function doSomething(){
-    console.log("Hello")
-  }
+
   
   function Home() {
     const username = localStorage.getItem('username');
@@ -58,10 +57,15 @@ const containerStyle = {
     const [waterBodies, setWaterBodies] = useState([]);
     const [placingMarker, setPlacingMarker] = useState(false);
     const [tempMarker, setTempMarker] = useState(null);
+    const [selectedFishingSite, setSelectedFishingSite] = useState("");
     // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
+    function doSomething() {
+      console.log("Marker Clicked");
+    }
 
-    // useEffect will only run this code once when it loads the page
+    
+    // useEffect will only run this code once when it mounts once
       useEffect( () => {
         if(!hasPromptedLocation){
         navigator.geolocation.getCurrentPosition(
@@ -82,7 +86,7 @@ const containerStyle = {
           }
         );
       }
-      },[hasPromptedLocation]);
+      },[hasPromptedLocation]); // dependency array 
     
 
       // if we do have userLocation lets find the nearest BoW
@@ -103,6 +107,9 @@ const containerStyle = {
         }
       }, [userLocation]);
 
+      function handleOpenInfoWindow(place){ 
+        setSelectedFishingSite(place)
+      }
 
     return (
       <>
@@ -118,6 +125,7 @@ const containerStyle = {
             zoom={12}
             onClick={(e) => {
               if (placingMarker){
+                console.log("Placing a marker")
                 const lat = e.latLng.lat();
                 const lng = e.latLng.lng();
                 setTempMarker({lat, lng});
@@ -126,19 +134,22 @@ const containerStyle = {
             }}
           >
             {waterBodies.map((place, i) => (
-    <Marker
-      key={i}
-      position={{ lat: place.lat, lng: place.lng }}
-      title={place.name}
-    />
-  ))}
-  {username ? (<button class="mapButton" onClick={() => {
+              <Marker
+                key={i}
+                position={{ lat: place.lat, lng: place.lng }}
+                title={"running"}
+                onClick={() => handleOpenInfoWindow(place)} 
+              />
+            ))}
+
+  {username ? (<button className="mapButton" onClick={() => {
     setPlacingMarker(true);
   }} > Add a fishing spot</button>)
           : (<label> Must sign in first</label>)}
           </GoogleMap>
         </LoadScript>
-        
+        { selectedFishingSite ? (<FishingSite place={selectedFishingSite}/> ) : (<p> Must select fishing place first</p>)
+        }
         </section>
       </>
     );
