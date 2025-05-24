@@ -58,6 +58,7 @@ const containerStyle = {
     const [placingMarker, setPlacingMarker] = useState(false);
     const [tempMarker, setTempMarker] = useState(null);
     const [selectedFishingSite, setSelectedFishingSite] = useState("");
+    const [zoomLevel, setZoomLevel] = useState(12);
     // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
     function doSomething() {
@@ -122,7 +123,7 @@ const containerStyle = {
             mapContainerStyle={containerStyle}
             center={ userLocation ? userLocation : (center)}
             options={{ styles: customMapStyle}}
-            zoom={12}
+            zoom={zoomLevel}
             onClick={(e) => {
               if (placingMarker){
                 console.log("Placing a marker")
@@ -149,7 +150,7 @@ const containerStyle = {
           </GoogleMap>
         </LoadScript>
         { selectedFishingSite ? (<FishingSite place={selectedFishingSite}/> ) : (<p> Must select fishing place first</p>)
-        }
+          }
         </section>
       </>
     );
