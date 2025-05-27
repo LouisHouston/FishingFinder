@@ -136,7 +136,7 @@ const containerStyle = {
           >
             {waterBodies.map((place, i) => (
               <Marker
-                key={i}
+                key={place.id}
                 position={{ lat: place.lat, lng: place.lng }}
                 title={"running"}
                 onClick={() => handleOpenInfoWindow(place)} 

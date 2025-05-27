@@ -49,5 +49,6 @@ class FishType(models.Model):
     name = models.CharField(max_length=100, unique=True)
     fresh = models.BooleanField(default = False)
     salt = models.BooleanField(default = False)
+    
     def __str__(self):
-        return self.name
+        return f"Type of Fish: {self.name} Fresh Water? {self.fresh} Salt Water {self.salt}"

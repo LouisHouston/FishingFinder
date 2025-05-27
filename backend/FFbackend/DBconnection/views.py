@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models.models import ExampleTable, Users, BodyOfWater
+from .models.models import ExampleTable, Users, BodyOfWater, FishType
 from .serializers import ExampleTableSerializer, UsersSerializer
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -74,3 +74,17 @@ def water_bodies(request):
         'name': b.name
     } for b in bodies]
     return Response(data)
+
+@api_view(['GET', 'POST'])
+def fish_types(request):
+    if request.method == 'GET':
+        fishes = FishType.objects.all()
+        data = [{
+            'name': f.name,
+            'salt': f.salt,
+            'fresh': f.fresh
+        }for f in fishes]
+        return Response(data)
+    if request.method == 'POST':
+        return Response("Wrong") # NOTE: Placeholder for POST to fish type submission
+    
