@@ -60,6 +60,7 @@ function Home() {
   const [tempMarker, setTempMarker] = useState(null);
   const [selectedFishingSite, setSelectedFishingSite] = useState("");
   const [zoomLevel, setZoomLevel] = useState(12);
+  const [hasWaterBodyChanged, setHasWaterBodyChanged] = useState(false);
   const [bodyOfWaterForm, setBodyOfWaterForm] = useState({
     name: "",
     lng: null,
@@ -107,9 +108,10 @@ function Home() {
         .then((data) => {
           // console.log("Water Bodies: ", data);
           setWaterBodies(data);
+          setHasWaterBodyChanged(false);
         });
     }
-  }, [userLocation]);
+  }, [hasWaterBodyChanged]);
 
   function handleOpenInfoWindow(place) {
     setSelectedFishingSite(place);
@@ -137,7 +139,7 @@ function Home() {
                 setBodyOfWaterForm({ ...bodyOfWaterForm, lat: lat, lng: lng });
                 console.log(bodyOfWaterForm.lng )
                 setTempMarker({ lat, lng });
-                if (bodyOfWaterForm.name != null) {
+                if (bodyOfWaterForm.name != "") {
                   fetch("http://127.0.0.1:8000/api/water-bodies/", {
                     method: "POST",
                     headers: {
@@ -145,8 +147,8 @@ function Home() {
                     },
                     body: JSON.stringify({
                       name: bodyOfWaterForm.name,
-                      lat: bodyOfWaterForm.lat,
-                      lng: bodyOfWaterForm.lng,
+                      lat: lat,
+                      lng: lng,
                     }),
                   })
                     .then((response) => {
@@ -159,6 +161,7 @@ function Home() {
                     })
                     .then((data) => {
                       console.log("Record inserted into Body of Water:", data);
+                      setHasWaterBodyChanged(true);
                     })
                     .catch((error) => {
                       console.log("Payload", JSON.stringify({
@@ -189,7 +192,6 @@ function Home() {
                   setPlacingMarker(true);
                 }}
               >
-                {" "}
                 Add a fishing spot
               </button>
             ) : (

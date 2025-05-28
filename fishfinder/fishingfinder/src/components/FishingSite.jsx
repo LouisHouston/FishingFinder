@@ -68,7 +68,7 @@ function FishingSite (props) {
 
     return ( 
         <>  
-        <h1> Fishing Site {props.place.id} </h1>
+        <h1> Fishing Site {props.place.name} </h1>
         <select id="fishTypes">
             { 
                 fishTypes.map( (fish,i) => {
