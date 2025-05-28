@@ -1,10 +1,7 @@
 from rest_framework import serializers
-from .models.models import ExampleTable, Users
+from .models.models import  Users
 
-class ExampleTableSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ExampleTable
-        fields = '__all__'
+
         
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:

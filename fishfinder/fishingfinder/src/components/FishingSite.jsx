@@ -9,18 +9,28 @@ function FishingSite (props) {
     });
 
     const [baitForm, setBaitForm] = useState({
-        BaitID: Int16Array,
+        BaitID: 0,
         fresh: false,
         salt: false
     })
 
+    const [fishTypes, setFishTypes] = useState([]);
+
     // place has a name, lat, lng, we need the ID so we can link it back to the fishing logs
     const [siteName, setSiteName] = useState("");
     // NOTE: for testing
-    let link = 'http://127.0.0.1:8000/api/'
+    const link = 'http://127.0.0.1:8000/api/'
+
+    // on render
+    useEffect (() => { 
+        getFishTypes()
+    },[])
+
+    // on change of body of water selected
     useEffect( () => {
         setSiteName(props.place.name);
     },[props])
+
 
     function getFishTypes() {
         fetch(link+'fish-types/', {
@@ -33,7 +43,23 @@ function FishingSite (props) {
             if(!res.ok) throw new Error('Result for fishTypes call was no good')
             return res.json()}) //turning result into JSON omg its json() not .JSON moron
         .then(data=> { //do something with this data
-            console.log(data);
+            setFishTypes(data);
+        } )
+        .catch(err => console.error(err));
+    }
+
+    function getBaitTypes() {
+        fetch(link+'bait-types/', {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(res => {
+            if(!res.ok) throw new Error('Result for bait types call was not good')
+            return res.json()}) //turning result into JSON omg its json() not .JSON moron
+        .then(data=> { //do something with this data
+            setFishTypes(data);
         } )
         .catch(err => console.error(err));
     }
@@ -43,7 +69,15 @@ function FishingSite (props) {
     return ( 
         <>  
         <h1> Fishing Site {props.place.id} </h1>
-        <button className="" onClick={getFishTypes}> Hello </button>
+        <select id="fishTypes">
+            { 
+                fishTypes.map( (fish,i) => {
+                    return <option key={i}> {fish.name} </option>
+                })
+            }
+        </select>
+        <button className="" onClick={getFishTypes}> Submit Catch </button>
+
         </>
     )
 
