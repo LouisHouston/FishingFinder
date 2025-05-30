@@ -1,20 +1,14 @@
 import React, {useEffect, useState} from "react";
+import NewCatchForm from "./NewCatchForm";
+import BaitForm from "./BaitForm";
+import FishForm from "./FishForm";
 
 function FishingSite (props) {
-    const [catchForm, setCatchForm] = useState({
-        typeOfFish: "",
-        fishName: "",
-        fresh: false,
-        salt:false
-    });
-
-    const [baitForm, setBaitForm] = useState({
-        BaitID: 0,
-        fresh: false,
-        salt: false
-    })
-
+    const [hasBaitForm, setHasBaitForm] = useState(false); // using this as the toggle for the bait form
+    const [hasFishForm, setHasFishForm] = useState(false); // using this as the toggle for the bait form
     const [fishTypes, setFishTypes] = useState([]);
+    const [baitTypes, setBaitTypes] = useState([]);
+
 
     // place has a name, lat, lng, we need the ID so we can link it back to the fishing logs
     const [siteName, setSiteName] = useState("");
@@ -24,7 +18,9 @@ function FishingSite (props) {
     // on render
     useEffect (() => { 
         getFishTypes()
+        getBaitTypes()
     },[])
+
 
     // on change of body of water selected
     useEffect( () => {
@@ -59,7 +55,7 @@ function FishingSite (props) {
             if(!res.ok) throw new Error('Result for bait types call was not good')
             return res.json()}) //turning result into JSON omg its json() not .JSON moron
         .then(data=> { //do something with this data
-            setFishTypes(data);
+            setBaitTypes(data);
         } )
         .catch(err => console.error(err));
     }
@@ -69,10 +65,25 @@ function FishingSite (props) {
     return ( 
         <>  
         <h1> Fishing Site {props.place.name} </h1>
-        <select id="fishTypes">
+        <button className="placeNameButton" onClick={ () => setHasBaitForm(prev => !prev)}> Bait Form </button>
+        <button className="placeNameButton" onClick={() => setHasFishForm(prev => !prev)}> Fish Form </button>
+        { hasBaitForm ? (<BaitForm toggle={hasBaitForm} setHasBaitForm={setHasBaitForm}/>) : (<></>) }
+        { hasFishForm ? (<FishForm toggle={hasFishForm} setHasFishForm={setHasFishForm}/>) : (<></>) }  
+        <h2> Fishing Log</h2>
+        <NewCatchForm place={props}></NewCatchForm>
+        <select id="fishTypes" >
+        <option> Choose a Fish </option>
             { 
                 fishTypes.map( (fish,i) => {
-                    return <option key={i}> {fish.name} </option>
+                    return <option key={i} value={fish.name}> {fish.name} </option>
+                })
+            }
+        </select>
+        <select id="baitTypes">
+        <option> Choose a Bait</option>
+            {
+                baitTypes.map( (bait,i) => {
+                    return <option key={i} value={bait.name}> {bait.name} </option>
                 })
             }
         </select>

@@ -11,5 +11,7 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout_user'), 
     path('water-bodies/', views.water_bodies, name="water_bodies"), #BOW info
     path('fish-types/', views.fish_types, name="fish_types"), # for fish info
-    path('bait-types/', views.bait_types, name="bait_types") # for bait info
+    path('bait-types/', views.bait_types, name="bait_types"), # for bait info
+    path('submit-fish/', views.submit_fish, name="submit_fish"),
+    path('submit-bait/', views.submit_bait, name="submit_bait"),
 ]

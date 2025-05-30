@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models.models import Users, BodyOfWater, FishType, BaitType
+from .models.models import BodyOfWater, FishType, BaitType
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import authenticate
@@ -39,7 +39,7 @@ def login_user(request):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'user_id': user.pk,
+            'user_id':  user.pk,
             'username': user.username
         })
     else:
@@ -95,5 +95,43 @@ def bait_types(request):
     if request.method == 'GET':
         baits = BaitType.objects.all()
         data = [{
-            
-        }]
+            'name': bait.name,
+            'salt': bait.salt,
+            'fresh': bait.fresh
+        } for bait in baits]
+        return Response(data)
+    
+@api_view(['POST'])
+def submit_fish(request):
+    name = request.data.get('name')
+    salt = request.data.get('salt')
+    fresh = request.data.get('fresh')
+    try:
+        fish = FishType.objects.create(
+            name=name,
+            salt=salt,
+            fresh=fresh
+        )
+        return Response({"success": "Fish created successfully"}, status=201)
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)
+
+    #fish_id = models.AutoField(primary_key=True, unique=True)
+    #name = models.CharField(max_length=100, unique=True)
+    #fresh = models.BooleanField(default = False)
+    #salt = models.BooleanField(default = False)
+    
+@api_view(['POST'])
+def submit_bait(request):
+    name = request.data.get('name')
+    salt = request.data.get('salt')
+    fresh = request.data.get('fresh')
+    try:
+        bait = BaitType.objects.create(
+            name=name,
+            salt=salt,
+            fresh=fresh
+        )
+        return Response({"success": "Bait created successfully"}, status=201)
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)

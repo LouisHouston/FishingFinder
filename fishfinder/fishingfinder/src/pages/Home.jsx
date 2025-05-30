@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { AdvancedMarker } from "@vis.gl/react-google-maps";
 import FishingSite from "../components/FishingSite";
+import FishForm from "../components/FishForm";
 
 const containerStyle = {
   width: "100%",
@@ -123,9 +124,6 @@ function Home() {
         <h1>🐟Fishing Finder🐟</h1>
       </header>
       <section className="mapContainer">
-        <LoadScript
-          googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-        >
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation ? userLocation : center}
@@ -139,7 +137,7 @@ function Home() {
                 setBodyOfWaterForm({ ...bodyOfWaterForm, lat: lat, lng: lng });
                 console.log(bodyOfWaterForm.lng )
                 setTempMarker({ lat, lng });
-                if (bodyOfWaterForm.name != "") {
+                if (bodyOfWaterForm.name !== "") {
                   fetch("http://127.0.0.1:8000/api/water-bodies/", {
                     method: "POST",
                     headers: {
@@ -184,10 +182,10 @@ function Home() {
                 onClick={() => handleOpenInfoWindow(place)}
               />
             ))}
-
-            {username ? (
+          </GoogleMap>
+        {username ? (
               <button
-                className="mapButton"
+                className="button"
                 onClick={() => {
                   setPlacingMarker(true);
                 }}
@@ -197,8 +195,6 @@ function Home() {
             ) : (
               <label> Must sign in first</label>
             )}
-          </GoogleMap>
-        </LoadScript>
         {placingMarker ? (
           <input
             onChange={(e) =>

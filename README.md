@@ -52,3 +52,5 @@ let users rate or favorite water bodies
 add optional photos for water bodies or catches? that might be additional db space
 
 analytics by let users track catch history by date or season that would be cool
+
+TODO: *add little bait shops on the map*
