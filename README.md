@@ -65,10 +65,11 @@ NOW WE COOKING 🍳
 
 USE SEARCH FOR NOTE: on how to get basic things done or adding implementations
 ***
-#### How to move around in React
+#### Thigns learned
 
 Linkto for links but you really dont need links
 NavigateTo via Code or redirect (but redirects are bad for components)
+Hardcoding sucks always use envs when possible and keep the same formatting throughout the whole thing
 ***
 
 ``` REVIEW: ``` <br>

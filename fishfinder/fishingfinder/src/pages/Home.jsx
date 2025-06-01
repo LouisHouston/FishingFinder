@@ -97,7 +97,7 @@ function Home() {
   // with all revelant tags with fish and bait
   useEffect(() => {
     if (userLocation) {
-      fetch(process.env.REACT_APP_BASE_URL+ "api/water-bodies/", {
+      fetch(process.env.REACT_APP_BASE_URL+ "water-bodies/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

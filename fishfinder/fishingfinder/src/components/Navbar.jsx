@@ -15,7 +15,7 @@ function Navbar() {
   function logout() {
     const token = localStorage.getItem('authtoken');
     
-    fetch("https://fishingfinder.onrender.com/api/logout/", {
+    fetch(process.env.REACT_APP_BASE_URL+ "logout/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
