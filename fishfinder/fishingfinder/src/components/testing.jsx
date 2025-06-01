@@ -6,7 +6,7 @@ export const TestDbButton = () => {
     const [records, setRecords] = useState([]);
 
     const testFetch = () => {
-    fetch("http://127.0.0.1:8000/api/test-db/", {
+    fetch(process.env.REACT_APP_BASE_URL + "test-db/", {
         
     })
     .then(response => { 
@@ -19,7 +19,7 @@ export const TestDbButton = () => {
 
 
     const insertRecord = () => {
-        fetch("http://127.0.0.1:8000/api/test-db/", {
+        fetch(process.env.REACT_APP_BASE_URL+ "test-db/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

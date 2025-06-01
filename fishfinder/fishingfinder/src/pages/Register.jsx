@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const link = "http://127.0.0.1:8000/api/registerUser/"
+  const link = process.env.REACT_APP_BASE_URL+"registerUser/"
   const [registrationForm, setRegistrationForm] = useState({
     username: "",
     email: "",

@@ -1,7 +1,6 @@
 import react, { useState, useEffect } from "react";
 
 function FishForm({ setHasFishForm }) {
-  const link = "http://127.0.0.1:8000/api/";
   const [fishForm, setFishForm] = useState({
     name: "",
     salt: false,
@@ -11,7 +10,7 @@ function FishForm({ setHasFishForm }) {
   const submitFish = (e) => {
     e.preventDefault(); // prevents the page from refreshing
 
-    fetch(link + "submit-fish/", {
+    fetch(process.env.REACT_APP_BASE_URL + "submit-fish/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

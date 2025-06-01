@@ -97,7 +97,7 @@ function Home() {
   // with all revelant tags with fish and bait
   useEffect(() => {
     if (userLocation) {
-      fetch("http://127.0.0.1:8000/api/water-bodies/", {
+      fetch(process.env.REACT_APP_BASE_URL+ "api/water-bodies/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ function Home() {
                 console.log(bodyOfWaterForm.lng )
                 setTempMarker({ lat, lng });
                 if (bodyOfWaterForm.name !== "") {
-                  fetch("http://127.0.0.1:8000/api/water-bodies/", {
+                  fetch(process.env.REACT_APP_BASE_URL + "water-bodies/", {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
