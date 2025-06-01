@@ -84,8 +84,6 @@ function Home() {
           // setting users location
           setUserLocation({ lat: latitude, lng: longitude });
           setHasPromptedLocation(true);
-          // NOTE:debug
-          // console.log("User's location:", latitude, longitude);
         },
         (error) => {
           console.error("Error getting location:", error);
