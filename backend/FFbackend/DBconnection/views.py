@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models.models import BodyOfWater, FishType, BaitType
+from .models.models import BodyOfWater, FishType, BaitType, FishingLog
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import authenticate
@@ -75,13 +75,12 @@ def water_bodies(request):
         except Exception as e:
             return Response({"Body of Water error": str(e)}, status=400)
 
-        
-
 @api_view(['GET', 'POST'])
 def fish_types(request):
     if request.method == 'GET':
         fishes = FishType.objects.all()
         data = [{
+            'fish_id': f.fish_id,
             'name': f.name,
             'salt': f.salt,
             'fresh': f.fresh
@@ -95,6 +94,7 @@ def bait_types(request):
     if request.method == 'GET':
         baits = BaitType.objects.all()
         data = [{
+            'bait_id': bait.bait_id,
             'name': bait.name,
             'salt': bait.salt,
             'fresh': bait.fresh
@@ -130,8 +130,27 @@ def submit_bait(request):
         bait = BaitType.objects.create(
             name=name,
             salt=salt,
-            fresh=fresh
+            fresh=fresh,
         )
         return Response({"success": "Bait created successfully"}, status=201)
     except Exception as e:
         return Response({"error": str(e)}, status=400)
+    
+    
+@api_view(['GET','POST'])
+def submit_catch(request):
+    if request.method == 'POST':
+        bait_id = request.data.get('bait_id')
+        bow_id = request.data.get('bow_id')
+        user_id = request.data.get('user_id')
+        fish_id = request.data.get('fish_id')
+        try:
+            catch = FishingLog.objects.create(
+                bait_id_id= bait_id,
+                bow_id_id = bow_id,
+                user_id = user_id,
+                fish_id_id = fish_id,
+            )
+            return Response({"success": "Catch has been logged"}, status = 201)
+        except Exception as e:
+            return Response({"error": str(e)}, status = 400)
