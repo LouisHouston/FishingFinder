@@ -15,4 +15,5 @@ urlpatterns = [
     path('submit-fish/', views.submit_fish, name="submit_fish"),
     path('submit-bait/', views.submit_bait, name="submit_bait"), 
     path('submit-catch/', views.submit_catch , name='submit_catch'),
+    path('get-fishing-logs/', views.get_fishing_logs, name="get_fishing_logs")
 ]

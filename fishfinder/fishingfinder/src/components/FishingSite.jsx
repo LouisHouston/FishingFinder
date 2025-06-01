@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import NewCatchForm from "./NewCatchForm";
 import BaitForm from "./BaitForm";
 import FishForm from "./FishForm";
+import FishingLog from "./FishingLog";
 
 function FishingSite(props) {
   const [hasBaitForm, setHasBaitForm] = useState(false); // using this as the toggle for the bait form
   const [hasFishForm, setHasFishForm] = useState(false); // using this as the toggle for the bait form
   const [fishTypes, setFishTypes] = useState([]);
   const [baitTypes, setBaitTypes] = useState([]);
+  const [currentBoW, setCurrentBoW] = useState([])
+  const [fishingLogs, setFishingLogs] = useState([]);
   const [catchForm, setCatchForm] = useState({
     fish_id: "",
     bait_id: "",
@@ -27,6 +30,7 @@ function FishingSite(props) {
   // on change of body of water selected
   useEffect(() => {
     setSiteName(props.place.name);
+    setCurrentBoW(props.place.id);
   }, [props]);
 
   useEffect(() => {
@@ -55,10 +59,10 @@ function FishingSite(props) {
         return res.json();
       })
       .then((data) => {
-        console.log(data.catch_id);
       })
       .catch((err) => console.error("Submit Catch ERR: ", err));
   };
+
 
   function getFishTypes() {
     fetch(link + "fish-types/", {
@@ -92,7 +96,6 @@ function FishingSite(props) {
       .then((data) => {
         //do something with this data
         setBaitTypes(data);
-        console.log(data);
       })
       .catch((err) => console.error(err));
   }
@@ -100,6 +103,7 @@ function FishingSite(props) {
   return (
     <>
       <h1> Fishing Site {props.place.name} </h1>
+      <FishingLog bow_id={props.place.id} />
       <button
         className="placeNameButton"
         onClick={() => setHasBaitForm((prev) => !prev)}
@@ -122,8 +126,7 @@ function FishingSite(props) {
         <FishForm toggle={hasFishForm} setHasFishForm={setHasFishForm} />
       ) : (
         <></>
-      )}
-      <h2> Fishing Log</h2>
+      )}      
       <form>
         <select
           value={catchForm.fish_id}

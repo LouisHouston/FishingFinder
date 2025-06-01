@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt
-
+from .serializers import FishingLogSerializer
 # NOTE: where to create views
 # views are where you define the function for api calls and that will call something else 
 
@@ -154,3 +154,10 @@ def submit_catch(request):
             return Response({"success": "Catch has been logged"}, status = 201)
         except Exception as e:
             return Response({"error": str(e)}, status = 400)
+
+@api_view(['POST'])
+def get_fishing_logs(request):
+    bow_id = request.data.get("bow_id")
+    catches = FishingLog.objects.filter(bow_id=bow_id)
+    serializer = FishingLogSerializer(catches, many=True)
+    return Response(serializer.data)
