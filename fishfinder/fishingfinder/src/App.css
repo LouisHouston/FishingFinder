@@ -144,3 +144,18 @@ body {
   color: #282c34 !important;
   background-color: #23849e;
 }
+
+.tr-fishing-log{
+  border-bottom-style: solid !important;
+  border-right-style: solid !important;
+  border-color: #23849e !important;
+  border-width: 5%;
+  color:white;
+}
+
+.th-fishing-log{
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-color: #23849e !important;
+  border-width: 1.5px;
+}

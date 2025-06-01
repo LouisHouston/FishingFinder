@@ -34,6 +34,7 @@ class FishingLog(models.Model):
     bait_id = models.ForeignKey(BaitType, on_delete=models.CASCADE)
     bow_id = models.ForeignKey(BodyOfWater, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    caught_on = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return f"Catch {self.catch_id} by {self.uid}"
