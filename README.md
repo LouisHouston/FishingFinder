@@ -1,5 +1,7 @@
 # Fishing Finder
 
+Live DEMO: https://fishing-finder.vercel.app/
+
 Fishing Tracker is a comprehensive full-stack web application designed to help anglers log, track, and share their fishing experiences. The platform allows users to mark water bodies, log catches, and view community fishing insights.
 
 # Who is it for?
@@ -79,6 +81,9 @@ Hardcoding sucks always use envs when possible and keep the same formatting thro
 ✅ getting google map <br>
 ❌ make a dark mode and learn how to do it well <br>
 ❌ notice for user submissions<br>
+❌ Mobile response / Responsiveness in general <br>
+❌ Following Style Conventions <br>
+
 
 
 ***
@@ -90,6 +95,9 @@ filtering by bait type and what is the most success depending on BoW and bait
 analytics by let users track catch history by date or season that would be cool
 
 add little bait shops on map not huge but helpful to users
+
+# Styling Guide <- very important 
+
 
 
 [React-url]: https://reactjs.org/

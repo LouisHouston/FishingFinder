@@ -119,7 +119,11 @@ function Home() {
   return (
     <>
       <header>
-        <h1>🐟Fishing Finder🐟</h1>
+        <div className="flex justify-center ">
+        <h1 className="text-3xl font-bold underline">
+          <img src="https://www.svgrepo.com/show/40264/fish.svg" className="size-12"/>
+          Fishing Finder  <img src="https://www.svgrepo.com/show/40264/fish.svg" className="size-12"/> </h1>
+          </div>
       </header>
       <section className="mapContainer">
           <GoogleMap

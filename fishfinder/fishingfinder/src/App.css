@@ -38,7 +38,7 @@
 }
 
 h1{ 
-  color: aqua;
+  color: #5BC0EB;
   font-variant: inherit;
   font-size: 44px;
   font-weight: 320;
@@ -59,14 +59,14 @@ h1{
 }
 
 .navbar-logo {
-  color: #23849e;
+  color: #5BC0EB;
   text-decoration: none;
   font-size: 2em;
   font-weight: 600;
 }
 
 .navbar-logo:hover {
-  color: white;
+  color: #D4D6B9;
 }
 
 .navbar-link-container {
@@ -76,22 +76,22 @@ h1{
 }
 
 .navbar-item {
-  color: aliceblue !important;
+  color: #D4D6B9 !important;
   text-decoration: none;
   font-size: 0.8em;
   padding: 0.5rem;
   border-style: solid;
-  border-color: #23849e !important;
+  border-color: #5BC0EB !important;
   border-width: 1.5px;
   border-radius: .5em;
 }
 
 button.navbar-item {
-  color: aliceblue !important;
+  color: #D4D6B9 !important;
   text-decoration: none;
   font-size: 0.8em;
   padding: 0.5rem;
-  border-color: #23849e !important;
+  border-color: #5BC0EB !important;
   border-width: 1.5px;
   border-radius: .5em;
   background-color: inherit; 
@@ -101,8 +101,8 @@ button.navbar-item {
 
 
 .navbar-item:hover{
-  color: #282c34 !important;
-  background-color: #23849e;
+  color: #D4D6B9!important;
+  background-color: #5BC0EB;
 }
 
 
