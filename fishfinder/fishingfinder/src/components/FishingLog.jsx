@@ -33,32 +33,30 @@ function FishingLog({ bow_id }) {
   };
 
   return fishingLogs ? (
-    <>
-      <h2> Fishing Log</h2>
-      <table>
+    <div className="w-full col-span-2 flex justify-self-center items-center">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 ">
         <thead>
           <tr>
-            <th className="th-fishing-log"> Date </th>
-            <th className="th-fishing-log"> Fish Caught </th>
-            <th className="th-fishing-log"> Caught by </th>
-            <th className="th-fishing-log"> Bait Used </th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-white"> Date </th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-white"> Fish Caught </th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-white"> Caught by </th>
+            <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-white"> Bait Used </th>
           </tr>
         </thead>
         <tbody>
           {fishingLogs.map((log, i) => {
             return (
               <tr className="tr-fishing-log">
-                {" "}
-                <td> {log.caught_on} </td>
-                <td> {log.fish_name} </td>
-                <td> {log.username} </td>
-                <td> {log.bait_name} </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary dark:text-tertiary"> {log.caught_on} </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary dark:text-tertiary"> {log.fish_name} </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary dark:text-tertiary"> {log.username} </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-secondary dark:text-tertiary"> {log.bait_name} </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-    </>
+    </div>
   ) : (
     <>  </>
   );

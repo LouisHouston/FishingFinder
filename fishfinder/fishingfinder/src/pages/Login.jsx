@@ -39,6 +39,7 @@ function LoginPage() {
   }
 
   return (
+    <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
     <section className="flex flex-col items-center gap-4 min-h-5">
       <form className="justify-center">
         <div className="flex items-center border-2 border-black rounded px-3 py-2 gap-2 w-fit text-2xl font-medium pl-3">
@@ -61,7 +62,7 @@ function LoginPage() {
           <input
             onChange={(e) => setUserName(e.target.value)}
             type="text"
-            placeholder="Email"
+            placeholder="Username"
             className="outline-none bg-transparent text-tertiary"
           />
         </div>
@@ -99,6 +100,7 @@ function LoginPage() {
           Login
         </button>
     </section>
+    </div>
   );
 }
 

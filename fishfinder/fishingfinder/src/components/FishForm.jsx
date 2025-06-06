@@ -34,7 +34,7 @@ function FishForm({ setHasFishForm }) {
       });
   };
   return (
-    <>
+    <div className="col-span-1 col-start-2 row-start-3">
       <form>
         <input
           onChange={(e) => setFishForm({ ...fishForm, name: e.target.value })}
@@ -63,9 +63,11 @@ function FishForm({ setHasFishForm }) {
           />
         </label>
         <br />
-        <button onClick={submitFish}> Submit Fish</button>
+        <button
+        className="g-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+        onClick={submitFish}> Submit Fish</button>
       </form>
-    </>
+    </div>
   );
 }
 

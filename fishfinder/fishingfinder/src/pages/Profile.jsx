@@ -14,8 +14,9 @@ import React from "react";
 
 
     return (
-        <div>
-            Welcome {username}
+        <div >
+            <h1 className="font-medium">    Welcome {username} !</h1>
+         
         </div>
     )
 }

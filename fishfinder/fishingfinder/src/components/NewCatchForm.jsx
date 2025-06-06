@@ -22,7 +22,7 @@ function NewCatchForm(props) {
 
 
 return(
-    <>
+    <div className="col-span-2 col-start-1 row-start-4 row-span-1">
     <form>
         <label> Fish Type
         <input type="text" />
@@ -36,7 +36,7 @@ return(
             Submit Form
         </button>
     </form>
-    </>
+    </div>
 )
 
 }

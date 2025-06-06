@@ -69,10 +69,6 @@ function Home() {
   });
   // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
-  function doSomething() {
-    console.log("Marker Clicked");
-  }
-
   // useEffect will only run this code once when it mounts once
   useEffect(() => {
     if (!hasPromptedLocation) {
@@ -117,27 +113,25 @@ function Home() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
       <header>
-        <div className="flex justify-center ">
-        <h1 className="text-3xl font-bold underline">
-          <img src="https://www.svgrepo.com/show/40264/fish.svg" className="size-12"/>
-          Fishing Finder  <img src="https://www.svgrepo.com/show/40264/fish.svg" className="size-12"/> </h1>
+        <div className="flex justify-center items-end">
+        <h1 className="text-3xl font-bold flex ">
+          Fish Map   </h1>
           </div>
       </header>
-      <section className="mapContainer">
+      <section>
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation ? userLocation : center}
             options={{ styles: customMapStyle }}
+            className={`p-4 border ${placingMarker ? 'hover:cursor-crosshair' : 'hover:cursor-not-allowed'}`}
             zoom={zoomLevel}
             onClick={(e) => {
               if (placingMarker) {
-                console.log("Placing a marker");
                 const lat = e.latLng.lat();
-                const lng = e.latLng.lng();
+                const lng = e.latLng.lng(); 
                 setBodyOfWaterForm({ ...bodyOfWaterForm, lat: lat, lng: lng });
-                console.log(bodyOfWaterForm.lng )
                 setTempMarker({ lat, lng });
                 if (bodyOfWaterForm.name !== "") {
                   fetch(process.env.REACT_APP_BASE_URL + "water-bodies/", {
@@ -187,12 +181,12 @@ function Home() {
           </GoogleMap>
         {username ? (
               <button
-                className="button"
+                className="bg-secondary dark:bg-tertiary border-secondary border-solid rounded radius-2 "
                 onClick={() => {
                   setPlacingMarker(true);
                 }}
               >
-                Add a fishing spot
+                Add a fishing hole
               </button>
             ) : (
               <label> Must sign in first</label>
@@ -207,7 +201,7 @@ function Home() {
             placeholder="Name the body of water"
           />
         ) : (
-          <> not placing a marker</>
+          <> </>
         )}
 
         {selectedFishingSite ? (
@@ -216,7 +210,7 @@ function Home() {
           <p> Must select fishing place first</p>
         )}
       </section>
-    </>
+    </div>
   );
 }
 
