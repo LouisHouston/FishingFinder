@@ -10,8 +10,6 @@ function Navbar() {
     if (storedUserName) {
       setUserName(storedUserName);
     }
-
-    document.documentElement.classList.add('dark');
   }, []);
 
   // Function to turn on dark mode

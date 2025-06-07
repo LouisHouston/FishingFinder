@@ -52,7 +52,7 @@ const customMapStyle = [
   },
 ];
 
-function Home() {
+function Home({setLoading, setStatus}) {
   const username = localStorage.getItem("username");
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null });
   const [hasPromptedLocation, setHasPromptedLocation] = useState(false);
@@ -108,8 +108,23 @@ function Home() {
     }
   }, [hasWaterBodyChanged]);
 
-  function handleOpenInfoWindow(place) {
-    setSelectedFishingSite(place);
+ 
+
+  const handleOpenInfoWindow = async (place) => {
+    setLoading(true);
+    try {
+      setSelectedFishingSite(place);
+      setStatus("success");
+    }
+    catch(e){
+      setStatus("error");
+    }finally {
+      setTimeout( ()=>{
+        setLoading(false);
+        setStatus(null);
+      },1500)
+    }
+    
   }
 
   return (
@@ -198,6 +213,7 @@ function Home() {
             }
             value={bodyOfWaterForm.name}
             type="text"
+            className="dark:text-white  bg-transparent text-primary"
             placeholder="Name the body of water"
           />
         ) : (

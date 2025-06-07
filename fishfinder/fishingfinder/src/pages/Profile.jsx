@@ -9,14 +9,9 @@ import React from "react";
     
     }
 
-
-
-
-
     return (
-        <div >
-            <h1 className="font-medium">    Welcome {username} !</h1>
-         
+        <div className="bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300 h-fill" >
+            <h1 className="">    Welcome {username} !</h1>
         </div>
     )
 }
