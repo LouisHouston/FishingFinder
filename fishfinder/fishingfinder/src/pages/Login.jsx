@@ -6,47 +6,46 @@ function LoginPage({ setLoading, setStatus }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  function printUsernamestate() {
-    console.log(username);
-  }
 
-  const submitLogin = async () => {
-    setLoading(true);
-    try {
-      fetch(process.env.REACT_APP_BASE_URL + "login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            setStatus("error");
-            throw new Error(`LOGIN ERROR: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          localStorage.setItem("authToken", data.token);
-          localStorage.setItem("username", data.username);
-          localStorage.setItem("user_id", data.user_id);
-          window.location.href = "/";
-          setStatus("success");
-        })
-        .catch((error) => {
-          console.error("Login error: ", error);
-          setStatus("error");
-        });
-    } finally {
-      setTimeout( ()=> {
-        setLoading(false);
-      }, 2000)
+const submitLogin = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch(process.env.REACT_APP_BASE_URL + "login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+
+    if (!response.ok) {
+      setStatus("error");
+      throw new Error(`LOGIN ERROR: ${response.status}`);
     }
-  };
+
+    const data = await response.json();
+    localStorage.setItem("authToken", data.token);
+    localStorage.setItem("username", data.username);
+    localStorage.setItem("user_id", data.user_id);
+    setStatus("success");
+    setTimeout(() => {
+      setLoading(false);
+      window.location.href = "/";
+    }, 1500);
+    
+  } catch (error) {
+    setStatus("error");
+    console.error("Login error: ", error);
+  } finally {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300 pt-4">

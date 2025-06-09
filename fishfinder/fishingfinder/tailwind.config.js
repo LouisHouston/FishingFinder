@@ -10,13 +10,13 @@ module.exports = {
           "100%": { width: "100%", backgroundColor: "#00FF00" },
         },
         progressRed: {
-          '0%': { width: "5%" },
+          "0%": { width: "5%" },
           "100%": { width: "100%", backgroundColor: "#FF0000" },
         },
       },
       animation: {
-        progressGreen: "progressGreen 2s linear forwards",
-        progressRed: "progressRed 2s linear  forwards"
+        progressGreen: "progressGreen 1s linear forwards",
+        progressRed: "progressRed 1s linear  forwards"
       },
       colors: {
         primary: "#282C34",

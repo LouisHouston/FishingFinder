@@ -122,7 +122,7 @@ function Home({setLoading, setStatus}) {
       setTimeout( ()=>{
         setLoading(false);
         setStatus(null);
-      },1500)
+      },550)
     }
     
   }

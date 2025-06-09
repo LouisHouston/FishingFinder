@@ -31,8 +31,7 @@ def registerUser(request):
 @csrf_exempt
 def login_user(request):
     username = request.data.get('username')
-    password = request.data.get('password')
-    
+    password = request.data.get('password')  
     user = authenticate(username=username, password=password)
     
     if user:
