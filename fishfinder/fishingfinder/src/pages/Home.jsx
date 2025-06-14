@@ -131,7 +131,7 @@ function Home({setLoading, setStatus}) {
     <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
       <header>
         <div className="flex justify-center items-end">
-        <h1 className="text-3xl font-bold flex ">
+        <h1 className="text-3xl font-bold flex text-tertiary dark:text-tertiary">
           Fish Map   </h1>
           </div>
       </header>

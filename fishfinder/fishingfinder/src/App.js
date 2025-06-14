@@ -1,5 +1,4 @@
 import logo from "./logo.svg";
-import "./App.css";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import { TestDbButton } from "./components/testing";
@@ -20,7 +19,7 @@ function App() {
 }, []);
 
   return (
-    <Router>
+    <Router className="bg-white dark:bg-slate-700">
       <Navbar />
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <LoadingBar
