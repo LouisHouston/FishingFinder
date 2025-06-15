@@ -131,7 +131,7 @@ function Home({setLoading, setStatus}) {
     <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
       <header>
         <div className="flex justify-center items-end">
-        <h1 className="text-3xl font-bold flex text-tertiary dark:text-tertiary">
+        <h1 className="text-3xl font-bold flex text-secondary dark:text-tertiary">
           Fish Map   </h1>
           </div>
       </header>
@@ -139,7 +139,8 @@ function Home({setLoading, setStatus}) {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation ? userLocation : center}
-            options={{ styles: customMapStyle }}
+            disableDefaultUI={true}
+            options={{ styles: customMapStyle, disableDefaultUI:true }}
             className={`p-4 border ${placingMarker ? 'hover:cursor-crosshair' : 'hover:cursor-not-allowed'}`}
             zoom={zoomLevel}
             onClick={(e) => {

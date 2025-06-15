@@ -102,15 +102,16 @@ function FishingSite(props) {
 
   return (
     <div className="grid grid-cols-2 grid-row-5 gap-4 w-full mx-auto">
-      <h1 className="col-span-2 row-span-1 row-start-1"> Fishing Site {props.place.name} </h1>
-      <div className="col-span-1 col-start-1 row-start-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center flex">
+      <h1 className="col-span-2 row-span-1 row-start-1 text-3xl text-center"> Fishing Site {props.place.name} </h1>
+      
        <button
+        className="col-span-1 col-start-1 row-start-2  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-tertiary dark:border-gray-600 dark:placeholder-gray-400 dark:text-primnary dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center"
         onClick={() => setHasBaitForm((prev) => !prev)}
       >
         New Bait Form
       </button>
       
-      </div>
+      
       {hasBaitForm ? (
         <BaitForm toggle={hasBaitForm} setHasBaitForm={setHasBaitForm} />
       ) : (
@@ -119,7 +120,7 @@ function FishingSite(props) {
       <FishingLog bow_id={props.place.id} />
      
       <button
-        className="col-span-1 col-start-2 row-start-2  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center"
+        className="col-span-1 col-start-2 row-start-2  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-tertiary dark:border-gray-600 dark:placeholder-gray-400 dark:text-primnary dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center"
         onClick={() => setHasFishForm((prev) => !prev)}
       >
         New Fish Form
@@ -139,7 +140,7 @@ function FishingSite(props) {
             setCatchForm({ ...catchForm, fish_id: parseInt(e.target.value) })
           }
         >
-          <option value="" className="bg-white decoration-none text-nowrap dark:text-white dark:bg-primary dark:bg-transparent outline-none">Choose a Fish</option>
+          <option value="" className="bg-white decoration-none text-nowrap dark:text-white dark:bg-primary dark:bg-transparent outline-none transition-colors duration-300">Choose a Fish</option>
           {fishTypes.map((fish, i) => (
             <option key={i}  className="bg-white decoration-none text-nowrap dark:text-white dark:bg-primary"value={fish.fish_id}>
               {fish.name}
@@ -153,14 +154,14 @@ function FishingSite(props) {
             setCatchForm({ ...catchForm, bait_id: parseInt(e.target.value) })
           }
         >
-          <option value="" className="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center">Choose a Bait</option>
+          <option value="" className="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-tertiary dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center transition-colors duration-300 ease-in-out">Choose a Bait</option>
           {baitTypes.map((bait, i) => (
             <option key={i} value={bait.bait_id}>
               {bait.name}
             </option>
           ))}
         </select>
-        <button className="text-gray-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center bg-secondary border-solid border-opacity-100" onClick={submitCatch}>
+        <button className="text-gray-950 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-primary dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center bg-secondary dark:bg-tertiary border-solid border-opacity-100" onClick={submitCatch}>
           Submit Catch
         </button>
       </form>
