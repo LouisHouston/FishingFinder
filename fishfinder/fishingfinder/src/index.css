@@ -1,4 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+@font-face {
+  font-family: 'Chillax';
+  src: url('../src/assets/fonts/Chillax-Variable.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}

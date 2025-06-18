@@ -69,6 +69,9 @@ function Home({setLoading, setStatus}) {
   });
   // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
+  useEffect(() => {
+      document.title = `Map | Fishing Finder`; 
+  },[])
   // useEffect will only run this code once when it mounts once
   useEffect(() => {
     if (!hasPromptedLocation) {

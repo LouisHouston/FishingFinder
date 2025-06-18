@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily:{
+        sans: ['Chillax', 'ui-sans-serif', 'system-ui'],
+      },
       keyframes: {
         progressGreen: {
           "0%": { width: "5%" },

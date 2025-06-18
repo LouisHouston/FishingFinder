@@ -8,7 +8,7 @@ function Navbar() {
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("username");
-
+    console.log(userName);
     if (storedUserName) {
       setUserName(storedUserName);
     }
