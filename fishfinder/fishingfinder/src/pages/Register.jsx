@@ -73,7 +73,7 @@ function RegisterPage() {
   }, [confirmPassword, registrationForm.password]);
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
+    <div className=" bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
       <form className="grid grid-cols-1 gap-4 w-full max-w-md mx-auto">
         <div className="flex justify-center items-end">
         <h1 className="text-3xl font-bold flex ">

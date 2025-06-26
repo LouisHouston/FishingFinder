@@ -1,12 +1,12 @@
 import react from "react";
 
-function Streaks() {
+function Favorites() {
 
 
 
     return(
         <div className=" bg-secondary text-black dark:bg-tertiary dark:text-white transition-colors duration-300 pt-4 text-left p-10 gap-5 m-5" >
-            <h1 className="responsive-heading center">  Streaks </h1>
+            <h1 className="responsive-heading center">  Favorites </h1>
         </div>
     );
 }
@@ -15,4 +15,4 @@ function Streaks() {
 
 
 
-export default Streaks;
+export default Favorites;

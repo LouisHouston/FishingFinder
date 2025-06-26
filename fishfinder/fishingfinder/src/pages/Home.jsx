@@ -6,7 +6,7 @@ import FishForm from "../components/FishForm";
 
 const containerStyle = {
   width: "100%",
-  height: "300px",
+  height: "50vh",
 };
 
 const center = {
@@ -131,19 +131,19 @@ function Home({setLoading, setStatus}) {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300">
+    <div className=" bg-white text-black dark:bg-primary dark:text-white transition-colors duration-300 overflow-hidden">
       <header>
         <div className="flex justify-center items-end">
         <h1 className="text-3xl font-bold flex text-secondary dark:text-tertiary">
           Fish Map   </h1>
           </div>
       </header>
-      <section>
+      <section className="m-10">
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation ? userLocation : center}
             disableDefaultUI={true}
-            options={{ styles: customMapStyle, disableDefaultUI:true }}
+            options={{ styles: customMapStyle, disableDefaultUI:true, zoomControl: false, keyboardShortcuts: false, gestureHandling: "greedy" }}
             className={`p-4 border ${placingMarker ? 'hover:cursor-crosshair' : 'hover:cursor-not-allowed'}`}
             zoom={zoomLevel}
             onClick={(e) => {
@@ -200,7 +200,7 @@ function Home({setLoading, setStatus}) {
           </GoogleMap>
         {username ? (
               <button
-                className="bg-secondary dark:bg-tertiary border-secondary border-solid rounded radius-2 "
+                className="bg-secondary dark:bg-tertiary border-secondary border-solid rounded radius-2 responsive-text-base "
                 onClick={() => {
                   setPlacingMarker(true);
                 }}
@@ -227,7 +227,7 @@ function Home({setLoading, setStatus}) {
         {selectedFishingSite ? (
           <FishingSite place={selectedFishingSite} />
         ) : (
-          <p> Must select fishing place first</p>
+          <p className="responsive-text-base"> Must select fishing place first</p>
         )}
       </section>
     </div>

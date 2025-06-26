@@ -33,7 +33,7 @@ function FishingLog({ bow_id }) {
   };
 
   return fishingLogs ? (
-    <div className="w-full col-span-2 flex justify-self-center items-center">
+    <div className="w-full col-span-2 flex justify-self-center items-center sm:w-fit md:w-fit">
       <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 ">
         <thead>
           <tr>

@@ -13,3 +13,13 @@
   font-style: normal;
   font-display: swap;
 }
+
+@layer components {
+  .responsive-heading {
+    @apply text-base sm:text-xl md:text-2xl text-black dark:text-white;
+  }
+  .responsive-text-base {
+    @apply text-base sm:text-lg md:text-xl text-black dark:text-white;
+  }
+}
+

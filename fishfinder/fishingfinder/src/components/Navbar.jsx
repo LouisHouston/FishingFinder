@@ -88,7 +88,7 @@ function Navbar() {
     <nav className="relative flex justify-between items-center p-2 bg-white dark:bg-primary transition-colors duration-300">
       <Link
         to="./"
-        className="text-base sm:text-xl md:text-3xl font-bold text-secondary dark:text-tertiary hover:text-tertiary dark:hover:text-secondary transition"
+        className="responsive-heading font-bold text-secondary dark:text-tertiary hover:text-tertiary dark:hover:text-secondary transition"
       >
         <div className="flex justify-center items-center hover:scale-105 transition duration-250 ease-in-out">
           <p className="font-bold flex">Fishing Finder</p>
@@ -100,36 +100,24 @@ function Navbar() {
       </Link>
 
       <div className="items-center gap-5 hidden md:flex">
-        {userName ? (
-          <Link
+        { userName && <Link
             to="./profile"
             className="flex items-center border-2 border-secondary dark:border-tertiary rounded-xl px-3 py-2 text-2xl font-medium text-secondary dark:text-tertiary hover:bg-tertiary dark:hover:bg-tertiary hover:text-primary dark:hover:text-primary"
           >
             {userName}
-          </Link>
-        ) : (
-          <Link
-            to="./login"
-            className="flex items-center border-2 border-secondary dark:border-tertiary rounded-xl px-3 py-2 text-2xl font-medium text-secondary dark:text-tertiary hover:bg-tertiary dark:hover:bg-tertiary hover:text-primary dark:hover:text-primary"
-          >
-            Login
-          </Link>
-        )}
-        {userName ? (
+          </Link> }
+          
+       
+        { userName &&
           <button
             onClick={logout}
             className="flex items-center border-2 border-secondary dark:border-tertiary rounded-xl px-3 py-2 text-2xl font-medium text-secondary dark:text-tertiary hover:bg-tertiary dark:hover:bg-tertiary hover:text-primary dark:hover:text-primary"
           >
             Sign Out
           </button>
-        ) : (
-          <Link
-            to="./register"
-            className="flex items-center border-2 border-secondary dark:border-tertiary rounded-xl px-3 py-2 text-2xl font-medium text-secondary dark:text-tertiary hover:bg-tertiary dark:hover:bg-tertiary hover:text-primary dark:hover:text-primary"
-          >
-            Sign Up
-          </Link>
-        )}
+          }
+         
+      
         <button onClick={toggleDarkMode}>
           {document.documentElement.classList.contains("dark")
             ? darkMoon
