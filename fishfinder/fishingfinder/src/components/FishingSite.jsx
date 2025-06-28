@@ -101,8 +101,15 @@ function FishingSite(props) {
   }
 
   return (
-    <div className="grid grid-cols-2 grid-row-5 gap-4 w-full mx-auto mt-8">
-      <h1 className="col-span-2 row-span-1 row-start-1 text-3xl text-center"> Fishing Site {props.place.name} </h1>
+    <div className="grid grid-cols-2 grid-row-5 gap-4 w-full mx-auto mt-8 response-text-base">
+      <h1 className="col-span-2 
+        row-span-1 
+        row-start-1 
+        text-3xl 
+        text-center
+        responsive-heading"> 
+        Fishing Site {props.place.name} 
+      </h1>
       
        <button
         className="col-span-1 col-start-1 row-start-2  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-tertiary dark:border-gray-600 dark:placeholder-gray-400 dark:text-primnary dark:focus:ring-blue-500 dark:focus:border-blue-500 justify-center"

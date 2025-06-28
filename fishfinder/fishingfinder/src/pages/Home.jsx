@@ -138,7 +138,7 @@ function Home({setLoading, setStatus}) {
           Fish Map   </h1>
           </div>
       </header>
-      <section className="m-10">
+      <section className="mx-10 responsive-text-base">
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation ? userLocation : center}

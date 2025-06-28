@@ -33,8 +33,8 @@ function FishingLog({ bow_id }) {
   };
 
   return fishingLogs ? (
-    <div className="w-full col-span-2 flex justify-self-center items-center sm:w-fit md:w-fit">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 ">
+    <div className="response-text-base w-full col-span-2 flex justify-self-center items-center bg-red-500 overflow-x-auto">
+      <table class="min-w-[640px] w-full divide-y divide-gray-200 dark:divide-neutral-700 table-auto">
         <thead>
           <tr>
             <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-white"> Date </th>
